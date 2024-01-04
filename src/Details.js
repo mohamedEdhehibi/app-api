@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-
+import Card from 'react-bootstrap/Card';
 const Details = () => {
     const id = useLocation();
     const [user, setUser] = useState([])
@@ -20,10 +20,20 @@ const Details = () => {
         fetchData();
     }, []);
   return (
-    <div>
-        <h1>{user.name}</h1>
-    </div>
+      <Card style={{background:'#ffddff'}}>
+          <Card.Body>
+              <Card.Title>{user.name}</Card.Title>
+              <Card.Text>
+                  <p>Username: {user.username}</p>
+                  <p>Email: {user.email}</p>
+                  <p>Address: {user.address && `${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}`}</p>
+                  {/* You can add more details as needed */}
+              </Card.Text>
+          </Card.Body>
+      </Card>
   )
+
+
 }
 
 export default Details
